@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="/src/css/style.css">
+
+    <title>TestApp</title>
+</head>
+<body>
+    @foreach (string line in ViewData["smartphones"] as List<string>)
+    {
+        @line
+    }
+    <h1 class="table_header">Table</h1>
+    <div class="table">
+        <div class="table_header">
+            <div class="table_header_cell"><p>1</p></div>
+            <div class="table_header_cell"><p>2</p></div>
+            <div class="table_header_cell"><p>3</p></div>
+            <div class="table_header_cell"><p>4</p></div>
+            <div class="table_header_cell"><p>Действия</p></div>
+        </div>
+        <div id="table_line" class="table_line">
+            <div class="table_line_cell"><input value="4"></div>
+            <div class="table_line_cell"><input value="3"></div>
+            <div class="table_line_cell"><input value="2"></div>
+            <div class="table_line_cell"><input value="1"></div>
+            <div class="table_line_cell">
+                <img src="/src/icons/edit.png" onclick="edit()">
+                <img src="/src/icons/add.png">
+                <img src="/src/icons/delete.png">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+        function edit() {
+            var tableLineCells = document.getElementsByClassName('table_line_cell');
+            Array.from(tableLineCells).forEach(function changeTableCellColor(tableLineCell) {
+                tableLineCell.setAttribute('style', 'border: 3px solid #FF6A6A;');
+            });
+        }
+</script>
+</html>
