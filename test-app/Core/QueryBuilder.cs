@@ -11,27 +11,10 @@ namespace test_app.Core
     public class QueryBuilder
     {
         private SqlConnection sqlConnection;
-        private Dictionary<string, CommandType> commandTypes = new Dictionary<string, CommandType>
-        {
-            { "procedure", CommandType.StoredProcedure },
-            { "table", CommandType.TableDirect },
-            { "text", CommandType.Text }
-        };
-        private CommandType commandType;
 
         public QueryBuilder()
         {
             sqlConnection = DbConnection.connection;
-        }
-
-        /// <summary>
-        /// Метод <c>SetCommandType</c> устанавливает тип комманды для SQL-запроса
-        /// </summary>
-        /// <param name="commandType">Тип команды строкой</param>
-        /// <returns>void</returns>
-        public void SetCommandType(string commandType)
-        {
-            this.commandType = commandTypes[commandType]; 
         }
 
         /// <summary>
@@ -42,26 +25,19 @@ namespace test_app.Core
         /// <example>Выполнить SQL-запрос к базе данных можно следующим образом:
         /// <code>
         ///     QueryBuilder queryBuilder = new QueryBuilder();
-        ///     queryBuilder.SetCommandType("text");
         ///     List<string> result = queryBuilder.Execute("SELECT * FROM some_table");
         /// </code>
         /// </example>
-        public List<string> Execute(string query)
+        public DataTable Execute(string query)
         {
             try
             {
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
-                SqlDataReader sqlReader = sqlCommand.ExecuteReader();
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter(query, sqlConnection);
 
-                List<string> result = new List<string>();
-                int count = 0;
-                while (sqlReader.Read())
-                {
-                    result.Add(sqlReader.GetString(count));
-                    count++;
-                }
+                DataTable result = new DataTable();
+                sqlAdapter.Fill(result);
 
                 return result;
             }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Web.Mvc;
 using test_app.Core;
+using test_app.Services;
 
 namespace test_app.Controllers
 {
@@ -18,10 +20,9 @@ namespace test_app.Controllers
         {
             string query = "GetAllSmartphones";
 
-            queryBuilder.SetCommandType("procedure");
-            List<string> result = queryBuilder.Execute(query);
+            DataTable result = queryBuilder.Execute(query);           
 
-            ViewData["smartphones"] = result;
+            ViewBag.smartphones = result;
             return View();
         }
 

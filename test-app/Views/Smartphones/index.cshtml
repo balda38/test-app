@@ -1,4 +1,5 @@
-﻿<!DOCTYPE HTML>
+﻿
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,30 +9,29 @@
     <title>TestApp</title>
 </head>
 <body>
-    @foreach (string line in ViewData["smartphones"] as List<string>)
-    {
-        @line
-    }
-    <h1 class="table_header">Table</h1>
+    <h1 class="table_header">@ViewBag.smartphones.TableName</h1>
     <div class="table">
         <div class="table_header">
-            <div class="table_header_cell"><p>1</p></div>
-            <div class="table_header_cell"><p>2</p></div>
-            <div class="table_header_cell"><p>3</p></div>
-            <div class="table_header_cell"><p>4</p></div>
+            @foreach (var columnName in ViewBag.smartphones.Columns)
+            {
+                <div class="table_header_cell"><p>@columnName</p></div>
+            }
             <div class="table_header_cell"><p>Действия</p></div>
         </div>
-        <div id="table_line" class="table_line">
-            <div class="table_line_cell"><input value="4"></div>
-            <div class="table_line_cell"><input value="3"></div>
-            <div class="table_line_cell"><input value="2"></div>
-            <div class="table_line_cell"><input value="1"></div>
-            <div class="table_line_cell">
-                <img src="/src/icons/edit.png" onclick="edit()">
-                <img src="/src/icons/add.png">
-                <img src="/src/icons/delete.png">
+        @foreach (var line in ViewBag.smartphones.Rows)
+        {
+            <div id="table_line" class="table_line">
+            @foreach(var cell in line.ItemArray)
+            {
+                <div class="table_line_cell"><input value="@cell"></div>
+            }
+                <div class="table_line_cell">
+                    <img src="/src/icons/edit.png" onclick="edit()">
+                    <img src="/src/icons/add.png">
+                    <img src="/src/icons/delete.png">
+                </div>
             </div>
-        </div>
+        }
     </div>
 </body>
 

@@ -13,7 +13,7 @@
 .table_header_cell{
     box-sizing: border-box;
     float: left;
-    width: 20%;
+    width: calc(100% / 13);
     height: 35px;
     margin-right: -9px;
     background-color: #696969;
@@ -33,7 +33,7 @@
 .table_line_cell{
     box-sizing: border-box;
     float: left;
-    width: 20%;
+    width: calc(100% / 13);
     height: 30px;
     margin-right: -9px;
     margin-top: -3px;

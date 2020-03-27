@@ -9,7 +9,7 @@ namespace test_app.Core
     /// </summary>
     public static class DbConnection 
     {
-        public static SqlConnection connection { get; set; }
+        public static SqlConnection connection;
 
         static DbConnection()
         {
