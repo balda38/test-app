@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace test_app.Core
 {
+    /// <summary>
+    /// Класс <c>DbConnection</c> устанавливает подключение к базе данных
+    /// </summary>
     public static class DbConnection 
     {
         public static SqlConnection connection { get; set; }
