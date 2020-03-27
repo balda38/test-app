@@ -18,8 +18,7 @@ namespace test_app.Core
 
         public QueryBuilder()
         {
-            DbConnection dbConnection = new DbConnection();
-            sqlConnection = dbConnection.connection;
+            sqlConnection = DbConnection.connection;
         }
 
         public void SetCommandType(string commandType)

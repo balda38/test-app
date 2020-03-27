@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 
 namespace test_app.Core
 {
-    public class DbConnection 
+    public static class DbConnection 
     {
-        public SqlConnection connection;
+        public static SqlConnection connection { get; set; }
 
-        public DbConnection()
+        static DbConnection()
         {
             try
             {
