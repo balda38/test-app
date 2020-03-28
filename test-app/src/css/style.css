@@ -31,6 +31,7 @@
     width: 100% - 6px;
 }
 .table_line_cell{
+    position: relative;
     box-sizing: border-box;
     float: left;
     width: calc(100% / 13);
@@ -42,14 +43,16 @@
     color: #000000;
     border: 3px solid #000000;
 }
-.table_line_cell input{    
-    width: 100%;
+.table_line_cell input{ 
+    width: 85%;
     height: 100%;
+    padding-left: 5%;
     margin-top: -10px;
     display: inline-block;    
     background-color: transparent;
     border: none;
     outline: none;
+    pointer-events: none;
 }
 .table_line_cell img{
     width: 20px;

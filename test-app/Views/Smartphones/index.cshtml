@@ -20,13 +20,13 @@
         </div>
         @foreach (var line in ViewBag.smartphones.Rows)
         {
-            <div id="table_line" class="table_line">
+            <div id="@line["id"]" class="table_line">
             @foreach(var cell in line.ItemArray)
             {
                 <div class="table_line_cell"><input value="@cell"></div>
             }
                 <div class="table_line_cell">
-                    <img src="/src/icons/edit.png" onclick="edit()">
+                    <img src="/src/icons/edit.png" onclick="edit(@line["id"])">
                     <img src="/src/icons/add.png">
                     <img src="/src/icons/delete.png">
                 </div>
@@ -36,10 +36,13 @@
 </body>
 
 <script>
-        function edit() {
-            var tableLineCells = document.getElementsByClassName('table_line_cell');
+        function edit(lineId) {
+            var tableLine = document.getElementById(lineId);
+            var tableLineCells = tableLine.getElementsByClassName('table_line_cell');
             Array.from(tableLineCells).forEach(function changeTableCellColor(tableLineCell) {
-                tableLineCell.setAttribute('style', 'border: 3px solid #FF6A6A;');
+                tableLineCell.setAttribute('style', 'border: 3px solid #FF0000;');
+                var input = tableLineCell.getElementsByTagName("input")[0];
+                input.setAttribute('style', 'pointer-events: auto;');
             });
         }
 </script>
