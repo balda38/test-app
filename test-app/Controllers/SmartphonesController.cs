@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Web.Mvc;
 using test_app.Core;
-using test_app.Services;
 
 namespace test_app.Controllers
 {
