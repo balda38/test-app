@@ -18,7 +18,8 @@ namespace test_app.Controllers
         {
             string query = "GetAllSmartphones";
 
-            DataTable result = queryBuilder.Execute(query);           
+            queryBuilder.SetCommandType("procedure");
+            DataTable result = queryBuilder.Execute(query);
 
             ViewBag.smartphones = result;
             return View();
@@ -74,26 +75,19 @@ namespace test_app.Controllers
             }
         }
 
-        // GET: Smartphones/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Smartphones/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string json = "{ \"id\": \"" + id + "\" }"; 
+            string query = "DeleteSmartphoneById";
+            queryBuilder.SetCommandType("procedure");
+            DataTable result = queryBuilder.Execute(query, json);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.smartphones = result;
+            JsonResult jsonMsg = Json("");
+            return jsonMsg;
+            //return View();
         }
     }
 }

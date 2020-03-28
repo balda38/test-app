@@ -224,6 +224,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="src\css\style.css" />
     <Content Include="src\icons\accept.png" />
     <Content Include="src\icons\add.png" />
@@ -231,6 +236,7 @@
     <Content Include="src\icons\delete.png" />
     <Content Include="src\icons\edit.png" />
     <Content Include="src\index.html" />
+    <Content Include="src\js\smartphones.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -242,10 +248,13 @@
     <Content Include="Views\Smartphones\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\js\" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

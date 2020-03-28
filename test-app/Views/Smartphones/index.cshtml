@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="~/src/css/style.css">
 
     <title>TestApp</title>
 </head>
@@ -26,9 +26,9 @@
                 <div class="table_line_cell"><input value="@cell"></div>
             }
                 <div class="table_line_cell">
-                    <img src="/src/icons/edit.png" onclick="edit(@line["id"])">
-                    <img src="/src/icons/add.png">
-                    <img src="/src/icons/delete.png">
+                    <img src="~/src/icons/edit.png" onclick="edit(@line["id"])">
+                    <img src="~/src/icons/add.png">
+                    <img class="delete_record_button" data-line-id="@line["id"]" src="~/src/icons/delete.png">
                 </div>
             </div>
         }
@@ -46,4 +46,8 @@
             });
         }
 </script>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="~/src/js/smartphones.js"></script>
+
 </html>

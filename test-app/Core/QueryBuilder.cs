@@ -1,6 +1,8 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.Mvc;
 
 namespace test_app.Core
 {
@@ -10,10 +12,27 @@ namespace test_app.Core
     public class QueryBuilder
     {
         private SqlConnection sqlConnection;
+        private Dictionary<string, CommandType> commandTypes = new Dictionary<string, CommandType>
+        {
+            { "procedure", CommandType.StoredProcedure },
+            { "table", CommandType.TableDirect },
+            { "text", CommandType.Text }
+        };
+        private CommandType commandType;
 
         public QueryBuilder()
         {
             sqlConnection = DbConnection.connection;
+        }
+
+        /// <summary>
+        /// Метод <c>SetCommandType</c> устанавливает тип комманды для SQL-запроса
+        /// </summary>
+        /// <param name="commandType">Тип команды строкой</param>
+        /// <returns>void</returns>
+        public void SetCommandType(string commandType)
+        {
+            this.commandType = commandTypes[commandType];
         }
 
         /// <summary>
@@ -27,13 +46,18 @@ namespace test_app.Core
         ///     List<string> result = queryBuilder.Execute("SELECT * FROM some_table");
         /// </code>
         /// </example>
-        public DataTable Execute(string query)
+        public DataTable Execute(string query, string vars = null)
         {
             try
             {
                 sqlConnection.Open();
 
-                SqlDataAdapter sqlAdapter = new SqlDataAdapter(query, sqlConnection);
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter();
+                sqlAdapter.SelectCommand = new SqlCommand(query, sqlConnection);
+                sqlAdapter.SelectCommand.CommandType = commandType;
+
+                if (vars != null)
+                    sqlAdapter.SelectCommand.Parameters.Add("@json", SqlDbType.NVarChar).Value = vars;
 
                 DataTable result = new DataTable();
                 sqlAdapter.Fill(result);
