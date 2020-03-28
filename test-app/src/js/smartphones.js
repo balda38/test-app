@@ -27,6 +27,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.edit_record_button',
         function () {
+            console.log($(this));
             rowId = $(this).data('row-id');
             prepareRowToUpdate();
         }
@@ -48,6 +49,12 @@ $(document).ready(function () {
         function () {
             rowId = $(this).data('row-id');
             deleteRecordWithAjax();
+        }
+    );
+
+    $(document).on('click', '.delete_choosen_rows',
+        function () {
+            multipleDeleteWithAjax();
         }
     );
 });
@@ -246,6 +253,34 @@ function deleteRecordWithAjax() {
         success: function (response) {
             getTableData();
             window.alert('Запись успешно удалена!');
+        },
+        error: function (response) {
+            window.alert('Ошибка');
+        }
+    })
+}
+
+function multipleDeleteWithAjax() {
+    let checkBoxes = $('.row_choose:checked');
+    let json = '{"ids":[';
+    for (let i = 0; i < checkBoxes.length; i++) {
+        if(i != (checkBoxes.length - 1))
+            json += checkBoxes[i].dataset.rowId + ', ';
+        else
+            json += checkBoxes[i].dataset.rowId;
+    }
+
+    json += ']}';
+
+    $.ajax({
+        url: 'MultipleDelete',
+        type: 'POST',
+        dataType: 'json',
+        data: { "json": json },
+
+        success: function (response) {
+            getTableData();
+            window.alert('Записи успешно удалена!');
         },
         error: function (response) {
             window.alert('Ошибка');

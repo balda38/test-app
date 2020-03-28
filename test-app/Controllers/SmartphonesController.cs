@@ -71,5 +71,18 @@ namespace test_app.Controllers
             JsonResult jsonMsg = Json("");
             return jsonMsg;
         }
+
+        // POST: Smartphones/MultipleDelete
+        [HttpPost]
+        public JsonResult MultipleDelete(string json)
+        {
+            string query = "MultipleDeleteSmartphones";
+            queryBuilder.SetCommandType("procedure");
+            DataTable result = queryBuilder.Execute(query, json);
+
+            ViewBag.smartphones = result;
+            JsonResult jsonMsg = Json("");
+            return jsonMsg;
+        }
     }
 }
