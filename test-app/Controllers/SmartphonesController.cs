@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Newtonsoft.Json;
+using System.Data;
 using System.Web.Mvc;
 using test_app.Core;
 
@@ -16,70 +17,52 @@ namespace test_app.Controllers
         // GET: Smartphones
         public ActionResult Index()
         {
+            return View();
+        }
+
+        // GET: Smartphones
+        [HttpGet]
+        public JsonResult GetAll()
+        {
             string query = "GetAllSmartphones";
 
             queryBuilder.SetCommandType("procedure");
             DataTable result = queryBuilder.Execute(query);
+            string json = JsonConvert.SerializeObject(result);
 
-            ViewBag.smartphones = result;
-            return View();
-        }
-
-        // GET: Smartphones/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Smartphones/Create
-        public ActionResult Create()
-        {
-            return View();
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Smartphones/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public JsonResult Create(string json)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            string query = "AddNewSmartphone";
+            queryBuilder.SetCommandType("procedure");
+            DataTable result = queryBuilder.Execute(query, json);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.smartphones = result;
+            JsonResult jsonMsg = Json("");
+            return jsonMsg;
         }
 
-        // GET: Smartphones/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
         // POST: Smartphones/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, string json)
         {
-            try
-            {
-                // TODO: Add update logic here
+            string query = "UpdateSmartphoneById";
+            queryBuilder.SetCommandType("procedure");
+            DataTable result = queryBuilder.Execute(query, json);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.smartphones = result;
+            JsonResult jsonMsg = Json("");
+            return jsonMsg;
         }
 
         // POST: Smartphones/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id, string json)
         {
-            string json = "{ \"id\": \"" + id + "\" }"; 
             string query = "DeleteSmartphoneById";
             queryBuilder.SetCommandType("procedure");
             DataTable result = queryBuilder.Execute(query, json);
@@ -87,7 +70,6 @@ namespace test_app.Controllers
             ViewBag.smartphones = result;
             JsonResult jsonMsg = Json("");
             return jsonMsg;
-            //return View();
         }
     }
 }

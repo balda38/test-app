@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,43 +8,13 @@
     <title>TestApp</title>
 </head>
 <body>
-    <h1 class="table_header">@ViewBag.smartphones.TableName</h1>
+    <h1 class="table_header">Смартфоны</h1>
+
+    <input class="add_row_button" value="Добавить новую запись"> <input class="delete_choosen_rows" value="Удалить отмеченные">
+
     <div class="table">
-        <div class="table_header">
-            @foreach (var columnName in ViewBag.smartphones.Columns)
-            {
-                <div class="table_header_cell"><p>@columnName</p></div>
-            }
-            <div class="table_header_cell"><p>Действия</p></div>
-        </div>
-        @foreach (var line in ViewBag.smartphones.Rows)
-        {
-            <div id="@line["id"]" class="table_line">
-            @foreach(var cell in line.ItemArray)
-            {
-                <div class="table_line_cell"><input value="@cell"></div>
-            }
-                <div class="table_line_cell">
-                    <img src="~/src/icons/edit.png" onclick="edit(@line["id"])">
-                    <img src="~/src/icons/add.png">
-                    <img class="delete_record_button" data-line-id="@line["id"]" src="~/src/icons/delete.png">
-                </div>
-            </div>
-        }
     </div>
 </body>
-
-<script>
-        function edit(lineId) {
-            var tableLine = document.getElementById(lineId);
-            var tableLineCells = tableLine.getElementsByClassName('table_line_cell');
-            Array.from(tableLineCells).forEach(function changeTableCellColor(tableLineCell) {
-                tableLineCell.setAttribute('style', 'border: 3px solid #FF0000;');
-                var input = tableLineCell.getElementsByTagName("input")[0];
-                input.setAttribute('style', 'pointer-events: auto;');
-            });
-        }
-</script>
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="~/src/js/smartphones.js"></script>

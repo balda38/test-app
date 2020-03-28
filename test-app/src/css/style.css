@@ -7,8 +7,45 @@
     height: 100%;
 }
 
+.add_row_button {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    display: inline;
+    width: auto;
+    text-decoration: underline;
+}
+.add_row_button:hover {
+    color: #696969;
+    text-decoration: none;
+    cursor: pointer;
+}
+.add_row_button:disabled {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    display: inline;
+    background-color: #FFFFFF;
+    color: #DCDCDC;
+    text-decoration: none;
+}
+.delete_choosen_rows {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    display: inline;
+    width: auto;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+.delete_choosen_rows:hover {
+    color: #696969;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .table_header{
-    width: 100% - 6px;
+    width: calc(100% - 6px);
 }
 .table_header_cell{
     box-sizing: border-box;
@@ -27,10 +64,10 @@
     margin-top: 3px;
 }
 
-.table_line{
-    width: 100% - 6px;
+.table_row{
+    width: calc(100% - 6px);
 }
-.table_line_cell{
+.table_row_cell{
     position: relative;
     box-sizing: border-box;
     float: left;
@@ -40,25 +77,18 @@
     margin-top: -3px;
     background-color: #F5DEB3;
     outline: none;
+    pointer-events: none;
     color: #000000;
     border: 3px solid #000000;
 }
-.table_line_cell input{ 
-    width: 85%;
-    height: 100%;
-    padding-left: 5%;
-    margin-top: -10px;
-    display: inline-block;    
-    background-color: transparent;
-    border: none;
-    outline: none;
-    pointer-events: none;
-}
-.table_line_cell img{
-    width: 20px;
+.table_row_cell img, input{
+    width: auto;
     height: 20px;
+    margin-right: 0;
+    margin-right: 5px;
+    pointer-events: auto;
     display: inline-block;
 }
-.table_line_actions_action img:hover{
+.table_row_cell img:hover{
     cursor: pointer;
 }
