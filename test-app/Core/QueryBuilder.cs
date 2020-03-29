@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
-using System.Web.Mvc;
 
 namespace test_app.Core
 {
@@ -66,7 +65,7 @@ namespace test_app.Core
             }
             catch (SqlException e)
             {
-                throw new HttpException("Не удалось выполнить SQL-запрос", e);
+                throw new HttpException("Не удалось выполнить SQL-запрос. " + e.Message, e);
             }
             finally
             {

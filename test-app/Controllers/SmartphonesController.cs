@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Data;
+using System.Web;
 using System.Web.Mvc;
 using test_app.Core;
 
@@ -24,25 +25,37 @@ namespace test_app.Controllers
         [HttpGet]
         public JsonResult GetAll()
         {
-            string query = "GetAllSmartphones";
+            try
+            {
+                string query = "GetAllSmartphones";
 
-            queryBuilder.SetCommandType("procedure");
-            DataTable result = queryBuilder.Execute(query);
-            string json = JsonConvert.SerializeObject(result);
+                queryBuilder.SetCommandType("procedure");
+                DataTable result = queryBuilder.Execute(query);
+                string json = JsonConvert.SerializeObject(result);
 
-            return Json(json, JsonRequestBehavior.AllowGet);
+                return Json(new { data=json, status = "done" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (HttpException e)
+            {
+                return Json(new { data=e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Smartphones/Create
         public JsonResult Create(string json)
         {
-            string query = "AddNewSmartphone";
-            queryBuilder.SetCommandType("procedure");
-            DataTable result = queryBuilder.Execute(query, json);
+            try
+            {
+                string query = "AddNewSmartphone";
+                queryBuilder.SetCommandType("procedure");
+                DataTable result = queryBuilder.Execute(query, json);
 
-            ViewBag.smartphones = result;
-            JsonResult jsonMsg = Json("");
-            return jsonMsg;
+                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (HttpException e)
+            {
+                return Json(new { data = e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
@@ -50,39 +63,54 @@ namespace test_app.Controllers
         [HttpPost]
         public ActionResult Edit(int id, string json)
         {
-            string query = "UpdateSmartphoneById";
-            queryBuilder.SetCommandType("procedure");
-            DataTable result = queryBuilder.Execute(query, json);
+            try
+            {
+                string query = "UpdateSmartphoneById";
+                queryBuilder.SetCommandType("procedure");
+                DataTable result = queryBuilder.Execute(query, json);
 
-            ViewBag.smartphones = result;
-            JsonResult jsonMsg = Json("");
-            return jsonMsg;
+                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (HttpException e)
+            {
+                return Json(new { data = e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Smartphones/Delete/5
         [HttpPost]
         public JsonResult Delete(int id, string json)
         {
-            string query = "DeleteSmartphoneById";
-            queryBuilder.SetCommandType("procedure");
-            DataTable result = queryBuilder.Execute(query, json);
+            try
+            {
+                string query = "DeleteSmartphoneById";
+                queryBuilder.SetCommandType("procedure");
+                DataTable result = queryBuilder.Execute(query, json);
 
-            ViewBag.smartphones = result;
-            JsonResult jsonMsg = Json("");
-            return jsonMsg;
+                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (HttpException e)
+            {
+                return Json(new { data = e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Smartphones/MultipleDelete
         [HttpPost]
         public JsonResult MultipleDelete(string json)
         {
-            string query = "MultipleDeleteSmartphones";
-            queryBuilder.SetCommandType("procedure");
-            DataTable result = queryBuilder.Execute(query, json);
+            try
+            {
+                string query = "MultipleDeleteSmartphones";
+                queryBuilder.SetCommandType("procedure");
+                DataTable result = queryBuilder.Execute(query, json);
 
-            ViewBag.smartphones = result;
-            JsonResult jsonMsg = Json("");
-            return jsonMsg;
+                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (HttpException e)
+            {
+                return Json(new { data = e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

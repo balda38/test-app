@@ -66,11 +66,15 @@ function getTableData() {
         dataType: 'json',
 
         success: function (response) {
-            tableAsJson = JSON.parse(response);
-            buildHtmlTable('.table');
+            if (response.status == 'done') {
+                tableAsJson = JSON.parse(response.data);
+                buildHtmlTable('.table');
+            }
+            else
+                window.alert('Произошла ошибка при получении данных из таблицы. ' + response.data);
         },
         error: function (response) {
-            window.alert('Ошибка');
+            window.alert('Произошла непредвиденная ошибка');
         }
     })
 }
@@ -169,12 +173,16 @@ function acceptNewRecordWithAjax() {
         data: { "json": JSON.stringify(json) },
 
         success: function (response) {
-            $('.add_row_button').prop('disabled', false);
-            getTableData();
-            window.alert('OK');
+            if (response.status == 'done') {
+                window.alert('Запись успешно добавлена!');
+                $('.add_row_button').prop('disabled', false);
+                getTableData();
+            }
+            else
+                window.alert('Произошла ошибка при добавлении записи. ' + response.data);
         },
         error: function (response) {
-            window.alert('Ошибка');
+            window.alert('Произошла непредвиденная ошибка');
         }
     })
 }
@@ -232,11 +240,15 @@ function updateRecordWithAjax() {
         data: { "json": JSON.stringify(json) },
 
         success: function (response) {
-            getTableData();
-            window.alert('Запись успешно изменена!');
+            if (response.status == 'done') {
+                getTableData();
+                window.alert('Запись успешно изменена!');
+            }
+            else
+                window.alert('Произошла ошибка при изменении записи. ' + response.data);
         },
         error: function (response) {
-            window.aler('Ошибка');
+            window.alert('Произошла непредвиденная ошибка');
         }
     })
 }
@@ -251,11 +263,15 @@ function deleteRecordWithAjax() {
         data: { "json" : json },
 
         success: function (response) {
-            getTableData();
-            window.alert('Запись успешно удалена!');
+            if (response.status == 'done') {
+                getTableData();
+                window.alert('Запись успешно удалена!');
+            }
+            else
+                window.alert('Произошла ошибка при удалении записи. ' + response.data);
         },
         error: function (response) {
-            window.alert('Ошибка');
+            window.alert('Произошла непредвиденная ошибка');
         }
     })
 }
@@ -279,11 +295,15 @@ function multipleDeleteWithAjax() {
         data: { "json": json },
 
         success: function (response) {
-            getTableData();
-            window.alert('Записи успешно удалена!');
+            if (response.status == 'done') {
+                getTableData();
+                window.alert('Записи успешно удалена!');
+            }
+            else
+                window.alert('Произошла ошибка при удалении записей. ' + response.data);
         },
         error: function (response) {
-            window.alert('Ошибка');
+            window.alert('Произошла непредвиденная ошибка');
         }
     })
 }
