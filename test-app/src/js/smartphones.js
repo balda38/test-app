@@ -27,7 +27,6 @@ $(document).ready(function () {
 
     $(document).on('click', '.edit_record_button',
         function () {
-            console.log($(this));
             rowId = $(this).data('row-id');
             prepareRowToUpdate();
         }
@@ -126,7 +125,6 @@ function addRowWithAjax() {
     newRow.method = 'POST';
 
     let tableCellsCount = $('.table_header_cell');
-    console.log(tableCellsCount);
 
     for (let i = 0; i < tableCellsCount.length; i++)
     {
@@ -178,7 +176,6 @@ function acceptNewRecordWithAjax() {
                 window.alert('Запись успешно добавлена!');
                 $('.add_row_button').prop('disabled', false);
                 tableAsJson = JSON.parse(response.data);
-                console.log(tableAsJson);
                 buildHtmlTable('.table');
             }
             else
