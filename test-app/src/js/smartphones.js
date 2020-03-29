@@ -81,12 +81,12 @@ function getTableData() {
 }
 
 function buildHtmlTable(selector) {
-    var columns = addAllColumnHeaders(tableAsJson, selector);
+    let columns = addAllColumnHeaders(tableAsJson, selector);
 
     for (var i = 0; i < tableAsJson.length; i++) {
-        var row$ = $('<form id="' + tableAsJson[i][columns[0]] +'" class="table_row"></form>');
-        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-            var cellValue = tableAsJson[i][columns[colIndex]];
+        let row$ = $('<form id="' + tableAsJson[i][columns[0]] + '" class="table_row"></form>');
+        for (let colIndex = 0; colIndex < columns.length; colIndex++) {
+            let cellValue = tableAsJson[i][columns[colIndex]];
             if (cellValue == null) cellValue = "";
             row$.append($('<input class="table_row_cell" name="' + columns[colIndex] +'"value="' + cellValue + '" readonly>'));
         }
@@ -102,12 +102,12 @@ function buildHtmlTable(selector) {
 
 function addAllColumnHeaders(tableAsJson, selector) {
     $(selector).empty();
-    var columnSet = [];
-    var headerTr$ = $('<div class="table_header"></div>');
+    let columnSet = [];
+    let headerTr$ = $('<div class="table_header"></div>');
 
-    for (var i = 0; i < tableAsJson.length; i++) {
-        var rowHash = tableAsJson[i];
-        for (var key in rowHash) {
+    for (let i = 0; i < tableAsJson.length; i++) {
+        let rowHash = tableAsJson[i];
+        for (let key in rowHash) {
             if ($.inArray(key, columnSet) == -1) {
                 columnSet.push(key);
                 headerTr$.append($('<div class="table_header_cell" name="' + key + '"></div>').html(key));
