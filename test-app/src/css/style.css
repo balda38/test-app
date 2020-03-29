@@ -15,6 +15,9 @@
     width: auto;
     text-decoration: underline;
 }
+.add_row_button:focus {
+    outline: none;
+}
 .add_row_button:hover {
     color: #696969;
     text-decoration: none;
@@ -37,6 +40,9 @@
     width: auto;
     margin-left: 10px;
     text-decoration: underline;
+}
+.delete_choosen_rows:focus {
+    outline: none;
 }
 .delete_choosen_rows:hover {
     color: #696969;

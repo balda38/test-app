@@ -302,7 +302,7 @@ function multipleDeleteWithAjax() {
 
         success: function (response) {
             if (response.status == 'done') {
-                window.alert('Записи успешно удалена!');
+                window.alert('Записи успешно удалены!');
                 tableAsJson = JSON.parse(response.data);
                 buildHtmlTable('.table');
             }
