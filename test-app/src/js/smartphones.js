@@ -151,7 +151,8 @@ function addRowWithAjax() {
 
         cell.className = 'table_row_cell';
         cell.style.border = '3px solid #FF0000';
-        cell.style.pointerEvents = 'auto';
+        if (i != 0)
+            cell.style.pointerEvents = 'auto';
 
         newRow.appendChild(cell);
     }
@@ -201,7 +202,8 @@ function prepareRowToUpdate()
     {
         formCells[i].style.border = '3px solid #FF0000';
         formCells[i].style.zIndex = '100';
-        formCells[i].style.pointerEvents = 'auto';
+        if (i != 0)
+            formCells[i].style.pointerEvents = 'auto';
     }
 
     let options = $('#rowOptions' + rowId);
