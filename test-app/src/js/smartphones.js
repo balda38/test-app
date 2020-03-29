@@ -176,7 +176,9 @@ function acceptNewRecordWithAjax() {
             if (response.status == 'done') {
                 window.alert('Запись успешно добавлена!');
                 $('.add_row_button').prop('disabled', false);
-                getTableData();
+                tableAsJson = JSON.parse(response.data);
+                console.log(tableAsJson);
+                buildHtmlTable('.table');
             }
             else
                 window.alert('Произошла ошибка при добавлении записи. ' + response.data);
@@ -241,8 +243,9 @@ function updateRecordWithAjax() {
 
         success: function (response) {
             if (response.status == 'done') {
-                getTableData();
                 window.alert('Запись успешно изменена!');
+                tableAsJson = JSON.parse(response.data);
+                buildHtmlTable('.table');
             }
             else
                 window.alert('Произошла ошибка при изменении записи. ' + response.data);
@@ -264,8 +267,9 @@ function deleteRecordWithAjax() {
 
         success: function (response) {
             if (response.status == 'done') {
-                getTableData();
                 window.alert('Запись успешно удалена!');
+                tableAsJson = JSON.parse(response.data);
+                buildHtmlTable('.table');
             }
             else
                 window.alert('Произошла ошибка при удалении записи. ' + response.data);
@@ -296,8 +300,9 @@ function multipleDeleteWithAjax() {
 
         success: function (response) {
             if (response.status == 'done') {
-                getTableData();
                 window.alert('Записи успешно удалена!');
+                tableAsJson = JSON.parse(response.data);
+                buildHtmlTable('.table');
             }
             else
                 window.alert('Произошла ошибка при удалении записей. ' + response.data);

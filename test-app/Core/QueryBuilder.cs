@@ -17,7 +17,7 @@ namespace test_app.Core
             { "table", CommandType.TableDirect },
             { "text", CommandType.Text }
         };
-        private CommandType commandType;
+        private CommandType commandType = CommandType.Text;
 
         public QueryBuilder()
         {
@@ -42,7 +42,8 @@ namespace test_app.Core
         /// <example>Выполнить SQL-запрос к базе данных можно следующим образом:
         /// <code>
         ///     QueryBuilder queryBuilder = new QueryBuilder();
-        ///     List<string> result = queryBuilder.Execute("SELECT * FROM some_table");
+        ///     queryBuilder.SetCommandType("text"); //Необязательный метод
+        ///     DataTable result = queryBuilder.Execute("SELECT * FROM some_table");
         /// </code>
         /// </example>
         public DataTable Execute(string query, string vars = null)

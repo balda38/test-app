@@ -33,11 +33,11 @@ namespace test_app.Controllers
                 DataTable result = queryBuilder.Execute(query);
                 string json = JsonConvert.SerializeObject(result);
 
-                return Json(new { data=json, status = "done" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = json, status = "done" }, JsonRequestBehavior.AllowGet);
             }
             catch (HttpException e)
             {
-                return Json(new { data=e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = e.Message, status = "error" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -49,8 +49,9 @@ namespace test_app.Controllers
                 string query = "AddNewSmartphone";
                 queryBuilder.SetCommandType("procedure");
                 DataTable result = queryBuilder.Execute(query, json);
+                string outputJson = JsonConvert.SerializeObject(result);
 
-                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = outputJson, status = "done" }, JsonRequestBehavior.AllowGet);
             }
             catch (HttpException e)
             {
@@ -68,8 +69,9 @@ namespace test_app.Controllers
                 string query = "UpdateSmartphoneById";
                 queryBuilder.SetCommandType("procedure");
                 DataTable result = queryBuilder.Execute(query, json);
+                string outputJson = JsonConvert.SerializeObject(result);
 
-                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = outputJson, status = "done" }, JsonRequestBehavior.AllowGet);
             }
             catch (HttpException e)
             {
@@ -86,8 +88,9 @@ namespace test_app.Controllers
                 string query = "DeleteSmartphoneById";
                 queryBuilder.SetCommandType("procedure");
                 DataTable result = queryBuilder.Execute(query, json);
+                string outputJson = JsonConvert.SerializeObject(result);
 
-                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = outputJson, status = "done" }, JsonRequestBehavior.AllowGet);
             }
             catch (HttpException e)
             {
@@ -104,8 +107,9 @@ namespace test_app.Controllers
                 string query = "MultipleDeleteSmartphones";
                 queryBuilder.SetCommandType("procedure");
                 DataTable result = queryBuilder.Execute(query, json);
+                string outputJson = JsonConvert.SerializeObject(result);
 
-                return Json(new { status = "done" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = outputJson, status = "done" }, JsonRequestBehavior.AllowGet);
             }
             catch (HttpException e)
             {

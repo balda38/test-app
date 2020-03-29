@@ -20,7 +20,7 @@ namespace test_app.Core
             }
             catch (SqlException e)
             {
-                throw new HttpException("Не удалось подключиться к базе данных", e);
+                throw new HttpException("Не удалось подключиться к базе данных. " + e.Message, e);
             }
         }
     }
