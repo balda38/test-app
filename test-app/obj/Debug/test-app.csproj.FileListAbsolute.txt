@@ -79,14 +79,6 @@ F:\Users\aldui\Desktop\test-app\test-app\bin\Microsoft.Owin.Security.Twitter.xml
 F:\Users\aldui\Desktop\test-app\test-app\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 F:\Users\aldui\Desktop\test-app\test-app\obj\Debug\test-app.dll
 F:\Users\aldui\Desktop\test-app\test-app\obj\Debug\test-app.pdb
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.dll
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Common.dll
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Common.WebHost.dll
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Mvc.dll
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.xml
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Common.xml
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Common.WebHost.xml
-F:\Users\aldui\Desktop\test-app\test-app\bin\Ninject.Web.Mvc.xml
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\System.Web.Helpers.resources.dll
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\System.Web.Mvc.resources.dll
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\System.Web.Optimization.resources.dll
