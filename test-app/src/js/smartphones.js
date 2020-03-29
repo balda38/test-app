@@ -164,7 +164,7 @@ function addRowWithAjax() {
 function acceptNewRecordWithAjax() {
     let json = {};
     let data = $.each($('#newRow').serializeArray(), function () {
-        json[this.name] = this.value;
+        json[this.name] = (this.value == '') ?  null : this.value;
     });
 
     $.ajax({
@@ -234,7 +234,7 @@ function cancelUpdateRecord() {
 function updateRecordWithAjax() {
     let json = {};
     let data = $.each($('#' + rowId).serializeArray(), function () {
-        json[this.name] = this.value;
+        json[this.name] = (this.value == '') ? null : this.value;
     });
 
     $.ajax({
