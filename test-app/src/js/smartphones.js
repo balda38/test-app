@@ -9,6 +9,7 @@ $(document).ready(function () {
     $(document).on('click', '.add_row_button',
         function () {
             $('.add_row_button').prop('disabled', true);
+            blockButtons();
             addRowWithAjax();
         }
     );
@@ -28,6 +29,7 @@ $(document).ready(function () {
     $(document).on('click', '.edit_record_button',
         function () {
             rowId = $(this).data('row-id');
+            blockButtons();
             prepareRowToUpdate();
         }
     );
@@ -86,7 +88,7 @@ function buildHtmlTable(selector) {
         for (var colIndex = 0; colIndex < columns.length; colIndex++) {
             var cellValue = tableAsJson[i][columns[colIndex]];
             if (cellValue == null) cellValue = "";
-            row$.append($('<input class="table_row_cell" name="' + columns[colIndex] +'"value="' + cellValue + '">'));
+            row$.append($('<input class="table_row_cell" name="' + columns[colIndex] +'"value="' + cellValue + '" readonly>'));
         }
         row$.append('<div class="table_row_cell" id="rowOptions' + tableAsJson[i][columns[0]] + '">' +
                     '<img class="edit_record_button" data-row-id="' + tableAsJson[i][columns[0]] +
@@ -116,6 +118,18 @@ function addAllColumnHeaders(tableAsJson, selector) {
     $(selector).append('<div class="table_header_cell"><p>Действия</p></div>');
 
     return columnSet;
+}
+
+function blockButtons() {
+    $('.table_row_cell').find('.edit_record_button').prop('disabled', true);
+    $('.table_row_cell').find('.delete_record_button').prop('disabled', true);
+    $('.table_row_cell').find('.row_choose').prop('disabled', true);
+}
+
+function unBlockButtons() {
+    $('.table_row_cell').find('.edit_record_button').prop('disabled', false);
+    $('.table_row_cell').find('.delete_record_button').prop('disabled', false);
+    $('.table_row_cell').find('.row_choose').prop('disabled', false);
 }
 
 function addRowWithAjax() {
@@ -190,6 +204,7 @@ function acceptNewRecordWithAjax() {
 function cancelNewRecord() {
     $('#newRow').remove();
     $('.add_row_button').prop('disabled', false);
+    unBlockButtons();
 }
 
 function prepareRowToUpdate()
@@ -200,7 +215,7 @@ function prepareRowToUpdate()
         formCells[i].style.border = '3px solid #FF0000';
         formCells[i].style.zIndex = '100';
         if (i != 0)
-            formCells[i].style.pointerEvents = 'auto';
+            formCells[i].readOnly = false;
     }
 
     let options = $('#rowOptions' + rowId);
@@ -226,6 +241,8 @@ function cancelUpdateRecord() {
                     '" src="/src/icons/edit.png" onclick="edit(@row["id"])">' +
                     '<img class="delete_record_button" data-row-id="' + rowId + '" src="/src/icons/delete.png">' +
                     '<input class="row_choose" data-row-id="' + rowId + '" type="checkbox">');
+
+    getTableData();
 }
 
 function updateRecordWithAjax() {
@@ -281,6 +298,7 @@ function deleteRecordWithAjax() {
 
 function multipleDeleteWithAjax() {
     let checkBoxes = $('.row_choose:checked');
+
     let json = '{"ids":[';
     for (let i = 0; i < checkBoxes.length; i++) {
         if(i != (checkBoxes.length - 1))
@@ -288,7 +306,6 @@ function multipleDeleteWithAjax() {
         else
             json += checkBoxes[i].dataset.rowId;
     }
-
     json += ']}';
 
     $.ajax({

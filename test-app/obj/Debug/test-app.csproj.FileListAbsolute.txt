@@ -98,3 +98,4 @@ F:\Users\aldui\Desktop\test-app\test-app\bin\ru\Microsoft.Owin.Security.Facebook
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\Microsoft.Owin.Security.Google.resources.dll
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 F:\Users\aldui\Desktop\test-app\test-app\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+F:\Users\aldui\Desktop\test-app\test-app\obj\Debug\test-app.csprojResolveAssemblyReference.cache
