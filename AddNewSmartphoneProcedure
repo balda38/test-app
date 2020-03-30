@@ -1,0 +1,21 @@
+CREATE PROCEDURE [dbo].[AddNewSmartphone]
+  @json nvarchar(max)
+AS
+BEGIN
+INSERT INTO smartphones (name, processor, ram, rom, battery, camera, display, other, vendor, price, amount, discount)
+  Select name, processor, ram, rom, battery, camera, display, other, vendor, price, amount, discount
+  FROM OPENJSON(@json)
+  WITH (name NVARCHAR(100),
+    processor NVARCHAR(100),
+    ram NVARCHAR(100),
+    rom NVARCHAR(100),
+    battery NVARCHAR(100),
+    camera NVARCHAR(100),
+    display NVARCHAR(100),
+    other NVARCHAR(100),
+    vendor NVARCHAR(100),
+    price INT,
+    amount INT,
+    discount NVARCHAR(20))
+SELECT * FROM smartphones
+END 
