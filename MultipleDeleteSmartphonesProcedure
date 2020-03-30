@@ -1,0 +1,12 @@
+CREATE PROCEDURE dbo.MultipleDeleteSmartphones
+  @json nvarchar(max)
+AS
+BEGIN
+DELETE FROM smartphones
+  WHERE id IN
+  (
+  SELECT id.value
+  FROM OPENJSON(@json, '$.ids') id
+  )
+SELECT * FROM smartphones
+END 
