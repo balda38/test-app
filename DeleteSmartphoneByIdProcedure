@@ -1,0 +1,13 @@
+CREATE PROCEDURE dbo.DeleteSmartphoneById
+  @json nvarchar(max)
+AS
+BEGIN
+DELETE FROM smartphones
+  WHERE id IN
+  (
+  Select id
+  FROM OPENJSON(@json)
+  WITH (id int)
+  )
+SELECT * FROM smartphones
+END
