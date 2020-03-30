@@ -1,0 +1,33 @@
+CREATE PROCEDURE [dbo].[UpdateSmartphoneById]
+  @json nvarchar(max)
+AS
+BEGIN
+UPDATE smartphones SET smartphones.name = IsNull(json.name, smartphones.name),
+    smartphones.processor = IsNull(json.processor, smartphones.processor),
+    smartphones.ram = IsNull(json.ram, smartphones.ram),
+    smartphones.rom = IsNull(json.rom, smartphones.rom),
+    smartphones.battery = IsNull(json.battery, smartphones.battery),
+    smartphones.camera = IsNull(json.camera, smartphones.camera),
+    smartphones.display = IsNull(json.display, smartphones.display),
+    smartphones.other = IsNull(json.other, smartphones.other),
+    smartphones.vendor = IsNull(json.vendor, smartphones.vendor),
+    smartphones.price = IsNull(json.price, smartphones.price),
+    smartphones.amount = IsNull(json.amount, smartphones.amount),
+    smartphones.discount = IsNull(json.discount, smartphones.discount)
+  FROM OPENJSON(@json)
+  WITH (id INT,
+    name NVARCHAR(100),
+    processor NVARCHAR(100),
+    ram NVARCHAR(100),
+    rom NVARCHAR(100),
+    battery NVARCHAR(100),
+    camera NVARCHAR(100),
+    display NVARCHAR(100),
+    other NVARCHAR(100),
+    vendor NVARCHAR(100),
+    price INT,
+    amount INT,
+    discount NVARCHAR(20)) AS json
+WHERE smartphones.id=json.id
+SELECT * FROM smartphones
+END 
